@@ -7,6 +7,9 @@ A method of executing PPPwn through hacked JIO Fiber Router.This Repo uses [PPPw
 - PC to connect to the router via telnet
 - A Pendrive or a Portable HDD/SSD that can be plugged into your router
 
+## Tested Model
+- JCOW404
+
 ## Steps
 1. Get root access to your JIO Fiber Router by following instructions in this repo [JFC-Group/JF-Customisation](https://github.com/JFC-Group/JF-Customisation).
 
@@ -19,13 +22,24 @@ A method of executing PPPwn through hacked JIO Fiber Router.This Repo uses [PPPw
 5. Now in pc, connect to the router via wifi and open cmd and run `telnet 192.168.29.1 23`, enter `root as username` and `password as Password`.
 
 6. Run the following commands in the telnet:
-```bash
-#Replace <usblable> with the name of your usb drive
-cp -r /mnt/vfs/admin/<usblable>/PPPWN-JIO-Router-main /home
-cd /home/PPPWN-JIO-Router-main
-chmod +x ./run.sh
-./run.sh
-```
+    ```bash
+    #Replace <usblable> with the name of your usb drive
+    cp -r /mnt/vfs/admin/<usblable>/PPPWN-JIO-Router-main /home
+    cd /home/PPPWN-JIO-Router-main
+    chmod +x ./run.sh
+    ./run.sh
+    ```
+7. To make it auto run during the router boot up, execute the following commands to open `rcS` file
+   ```bash
+   cd /etc/init.d
+   vi rcS
+   ```
+   and append the following lines in the end of the file.
+   ```bash
+   cd /home/PPPWN-JIO-Router-main
+   ./run.sh
+   ```
+   
 
 Thanks to the JFC-Group for the JIO Router Jailbreak.
 Also a thanks to everyone in the PS4 jailbreaking community that gave us the exploits!
