@@ -14,7 +14,7 @@ A method of executing PPPwn through hacked JIO Fiber Router.This Repo uses [PPPw
 
 3. Copy `PPPWN-JIO-Router-main` to root of the usb drive.
 
-4. Plug the usb drive in router, now connect ps4 and the router via lan cable. Plug the lan cable in the first lan port(Left-Right). And setup the internet connection in ps4 using lan and PPPoE.
+4. Plug the usb drive in router, now connect ps4 and the router via lan cable. Plug the lan cable in the last lan port(Left-Right). And setup the internet connection in ps4 using lan and PPPoE.
 
 5. Now in pc, connect to the router via wifi and open cmd and run `telnet 192.168.29.1 23`, enter `root as username` and `password as Password`.
 
