@@ -2,13 +2,20 @@
 A method of executing PPPwn through hacked JIO Fiber Router.This Repo uses [PPPwn_cpp](https://github.com/xfangfang/PPPwn_cpp)(arm-linux-musleabi(mpcorenovfp)), made by xfangfang.
 
 ## Requirements
-- JIO Router with root access
+- JIO Router with root access, preferably routers with firmware version less than or equal 2.3(as 2.3 is the highest tested firmware)
 - Ethernet cable
 - PC to connect to the router via telnet
 - A Pendrive or a Portable HDD/SSD that can be plugged into your router
 
+## Note
+- May not work with new firmwares as Jio made the sytem files hidden and readonly. This is confirmed on latest firmware but not sure on which firmware this change was implemented. Also, firmware downgrade maybe possible as I was able to downgrade from 2.3 to 1.5.
+- Not receommended on main router, because the router will try to auto update the fw. 
+- May not work on other models as some router model use mips architecture.(Can be supported in future)
+- Boot time of this router is around 50sec, so you will have to wait for it + the exploit runtime.
+- The router will start blinking in blue color while the exploit is running and solid blue color after executed successfully.
+
 ## Tested Model
-- JCOW404
+- JCOW404 (armv7l)
 
 ## Steps
 1. Get root access to your JIO Fiber Router by following instructions in this repo [JFC-Group/JF-Customisation](https://github.com/JFC-Group/JF-Customisation).
