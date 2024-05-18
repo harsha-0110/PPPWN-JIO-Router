@@ -8,7 +8,7 @@ A method of executing PPPwn through hacked JIO Fiber Router.This Repo uses [PPPw
 - A Pendrive or a Portable HDD/SSD that can be plugged into your router
 
 ## Note
-- May not work with new firmwares as Jio made the sytem files hidden and readonly. This is confirmed on latest firmware but not sure on which firmware this change was implemented. Also, firmware downgrade maybe possible as I was able to downgrade from 2.3 to 1.5.
+- May not work with new firmwares as Jio made the file-sytem readonly. This is confirmed on latest firmware but not sure on which firmware this change was implemented. Also, firmware downgrade maybe possible as I was able to downgrade from 2.3 to 1.5.
 - Not receommended on main router, because the router will try to auto update the fw. 
 - May not work on other models as some router model use mips architecture.(Can be supported in future)
 - Boot time of this router is around 50sec, so you will have to wait for it + the exploit runtime.
