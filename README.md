@@ -1,6 +1,6 @@
 # PPPWN-JIO-Router for fw900 & fw1100
 
-This guide explains how to execute PPPwn using a hacked JIO Fiber Router. It leverages [PPPwn_cpp](https://github.com/xfangfang/PPPwn_cpp) (arm-linux-musleabi (mpcorenovfp)), created by xfangfang.
+This guide explains how to execute PPPwn using a hacked JIO Fiber Router. It leverages [PPPwn_cpp](https://github.com/xfangfang/PPPwn_cpp), created by xfangfang.
 
 ## Requirements
 - **JIO Router**: Must have root access. Firmware version should be ≤ 2.3 (2.3 is the highest tested firmware).
