@@ -10,29 +10,34 @@ A method of executing PPPwn through hacked JIO Fiber Router.This Repo uses [PPPw
 ## Note
 - May not work with new firmwares as Jio made the file-sytem readonly. This is confirmed on latest firmware but not sure on which firmware this change was implemented. Also, firmware downgrade maybe possible as I was able to downgrade from 2.3 to 1.5.
 - Not receommended on main router, because the router will try to auto update the fw. 
-- May not work on other models as some router model use mips architecture.(Can be supported in future)
+- May or may not work on other models.
 - Boot time of this router is around 50sec, so you will have to wait for it + the exploit runtime.
 - The router will start blinking in blue color while the exploit is running and solid blue color after executed successfully.
+- The exploit runs very slow on mips router compared to armv7l router.
 
 ## Tested Model
 - JCOW404 (armv7l)
+- JCOW414 (mips)
 
 ## Steps
 1. Get root access to your JIO Fiber Router by following instructions in this repo [JFC-Group/JF-Customisation](https://github.com/JFC-Group/JF-Customisation).
 
 2. Download this repo as zip and extract it, open `run.sh` and modify firmware, stage1, stage2 based on your ps4 firmware version.
 
-3. Copy `PPPWN-JIO-Router-main` to root of the usb drive.
+3. Copy `PPPWN-JIO-Router-main` folder to root of the usb drive.
 
 4. Plug the usb drive in router, now connect ps4 and the router via lan cable. Plug the lan cable in the last lan port(Left-Right). And setup the internet connection in ps4 using lan and PPPoE.
 
-5. Now in pc, connect to the router via wifi and open cmd and run `telnet 192.168.29.1 23`, enter `root as username` and `password as Password`.
+5. Now in pc, connect to the router via wifi and open cmd and run `telnet 192.168.29.1 23`, enter `root as login` and `password as Password`.
 
 6. Run the following commands in the telnet:
     ```bash
     #Replace <usblable> with the name of your usb drive
     cp -r /mnt/vfs/admin/<usblable>/PPPWN-JIO-Router-main /home
     cd /home/PPPWN-JIO-Router-main
+    sed -e "s/\r//g" run.sh > temp.sh
+    cp temp.sh run.sh
+    rm temp.sh
     chmod +x ./run.sh
     ./run.sh
     ```
