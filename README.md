@@ -14,7 +14,6 @@ This guide explains how to execute PPPwn using a hacked JIO Fiber Router. It lev
 - **Main Router Warning**: Not recommended for your main router as it may auto-update the firmware.
 - **Other Models**: Compatibility with other models is not confirmed.
 - **Boot Time**: Approximately 50 seconds.
-- **Router Indicators**: Blinking blue during exploit execution; solid blue after successful execution.
 - **Performance**: Runs slower on MIPS routers compared to ARMv7l routers.
 
 ## Tested Models
@@ -70,6 +69,11 @@ To make the script run automatically during router boot-up:
     cd /home/PPPWN-JIO-Router-main
     ./run.sh
     ```
+## Features
+- Supports PS4 Firmware 9.00 & 11.00
+- Stage 2 payload is GoldHen Loader by [Sistro](https://github.com/SiSTR0)
+- Auto detection of router architecture
+- LED indication: Blinking blue during exploit execution; solid blue after successful execution.
 
 ## Acknowledgements
 Thanks to the JFC-Group for the JIO Router Jailbreak and to everyone in the PS4 jailbreaking community who contributed to the exploits!
