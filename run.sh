@@ -6,7 +6,19 @@ firmware=1100
 stage1=/home/PPPWN-JIO-Router-main/stage1_1100.bin
 stage2=/home/PPPWN-JIO-Router-main/stage2_1100.bin
 cd /home/PPPWN-JIO-Router-main
-chmod +x ./pppwn
+
+# Determine the architecture and set the appropriate pppwn executable
+arch=$(uname -m)
+if [ "$arch" = "armv7l" ]; then
+    pppwn_executable="./pppwn-armv7l"
+elif [ "$arch" = "mips" ]; then
+    pppwn_executable="./pppwn-mipsel"
+else
+    echo "Unsupported architecture: $arch"
+    exit 1
+fi
+
+chmod +x $pppwn_executable
 
 # Function to keep the LED in blue fast blink
 keep_led_blue_fast_blink() {
@@ -32,7 +44,7 @@ keep_led_blue_fast_blink &
 led_blink_pid=$!
 
 # Execute the pppwn command
-./pppwn --interface $interface --fw $firmware --stage1 $stage1 --stage2 $stage2 --auto-retry
+$pppwn_executable --interface $interface --fw $firmware --stage1 $stage1 --stage2 $stage2 --auto-retry
 
 # Stop the LED blinking loop (cleanup function will handle this)
 cleanup
