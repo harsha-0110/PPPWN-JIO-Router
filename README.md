@@ -26,10 +26,10 @@ This guide explains how to execute PPPwn using a hacked JIO Fiber Router. It lev
 Follow the instructions in the [JFC-Group/JF-Customisation](https://github.com/JFC-Group/JF-Customisation) repository to gain root access to your JIO Fiber Router.
 
 ### 2. Download and Prepare Files
-1. Download `PPPWN-JIO-Router-main.tar` from release.
+1. Download `PPPWN-JIO-Router-main.tar.gz` from release.
 
 ### 3. Transfer Files to USB
-1. Copy the `PPPWN-JIO-Router-main.tar` folder to the root directory of your USB drive.
+1. Copy the `PPPWN-JIO-Router-main.tar.gz` folder to the root directory of your USB drive.
 
 ### 4. Connect PS4 to Router
 1. Plug the USB drive into the router.
@@ -47,9 +47,9 @@ Follow the instructions in the [JFC-Group/JF-Customisation](https://github.com/J
 ### 6. Execute Commands via Telnet
 Run the following commands in the telnet session, replacing `<usblable>` with the name of your USB drive:
 ```bash
-cp /mnt/vfs/admin/<usblable>/PPPWN-JIO-Router-main.tar /home
+cp /mnt/vfs/admin/<usblable>/PPPWN-JIO-Router-main.tar.gz /home
 cd /home
-tar -xzvf PPPWN-JIO-Router-main.tar
+tar -xzvf PPPWN-JIO-Router-main.tar.gz
 cd PPPWN-JIO-Router-main
 chmod +x setup.sh && ./setup.sh
 ```
