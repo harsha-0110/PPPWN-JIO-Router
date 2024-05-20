@@ -50,7 +50,7 @@ Run the following commands in the telnet session, replacing `<usblable>` with th
 cp /mnt/vfs/admin/<usblable>/PPPWN-JIO-Router-main.tar /home
 cd /home
 tar -xzvf PPPWN-JIO-Router-main.tar
-cd /PPPWN-JIO-Router-main
+cd PPPWN-JIO-Router-main
 chmod +x setup.sh && ./setup.sh
 ```
 
