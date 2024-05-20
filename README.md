@@ -96,6 +96,7 @@ To make the script run automatically during router boot-up:
 - Stage 2 payload is GoldHen Loader by [Sistro](https://github.com/SiSTR0)
 - Auto detection of router architecture
 - LED indication: Blinking blue during exploit execution; solid blue after successful execution.
+- WPS button can be used to start the exploit and terminate the exploit(this will be helpful if the exploit gets stuck).
 
 ## Acknowledgements
 Thanks to the JFC-Group for the JIO Router Jailbreak and to everyone in the PS4 jailbreaking community who contributed to the exploits!
