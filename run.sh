@@ -1,11 +1,13 @@
 #!/bin/bash
+cd /home/PPPWN-JIO-Router-main
+
+# Source the configuration file
+source ./config.conf
+
+# Create a lock file
+touch /tmp/pppwn.lock
 
 echo "PPPWN - Designed for JIO Fiber Routers"
-interface=eth3.1
-firmware=1100
-stage1=/home/PPPWN-JIO-Router-main/stage1_1100.bin
-stage2=/home/PPPWN-JIO-Router-main/stage2_1100.bin
-cd /home/PPPWN-JIO-Router-main
 
 # Determine the architecture and set the appropriate pppwn executable
 arch=$(uname -m)
@@ -18,8 +20,6 @@ else
     exit 1
 fi
 
-chmod +x $pppwn_executable
-
 # Function to keep the LED in blue fast blink
 keep_led_blue_fast_blink() {
     while true; do
@@ -29,23 +29,28 @@ keep_led_blue_fast_blink() {
     done
 }
 
-# Trap to ensure LED is turned off when the script exits
+# Trap to ensure LED is turned off when the script exits or is interrupted
 cleanup() {
-    kill $led_blink_pid
+    rm /tmp/pppwn.lock
+    kill $led_blink_pid 2>/dev/null
     ledctl1 ALL off
     ledctl1 BLUE on
 }
 
 # Execute the cleanup function when the script exits or is interrupted
-trap cleanup EXIT
+trap cleanup EXIT SIGTERM SIGINT
 
 # Start the LED blinking in the background
 keep_led_blue_fast_blink &
 led_blink_pid=$!
 
-# Execute the pppwn command
-$pppwn_executable --interface $interface --fw $firmware --stage1 $stage1 --stage2 $stage2 --auto-retry
+# Execute the pppwn command and store its PID
+$pppwn_executable --interface $interface --fw $firmware --stage1 $stage1 --stage2 $stage2 --auto-retry &
+pppwn_pid=$!
+
+# Wait for the pppwn executable to finish
+wait $pppwn_pid
 
 # Stop the LED blinking loop (cleanup function will handle this)
 cleanup
-trap - EXIT
+trap - EXIT SIGTERM SIGINT
