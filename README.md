@@ -91,6 +91,9 @@ To make the script run automatically during router boot-up:
     cd /home/PPPWN-JIO-Router-main
     ./run.sh
     ```
+## Tutorial 
+[<img src="https://i.ytimg.com/vi/50wWXpNX-s0/maxresdefault.jpg" width="50%">](https://www.youtube.com/watch?v=50wWXpNX-s0) 
+
 ## Features
 - Supports PS4 Firmware 9.00 & 11.00
 - Stage 2 payload is GoldHen Loader by [Sistro](https://github.com/SiSTR0)
