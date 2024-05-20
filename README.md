@@ -26,11 +26,10 @@ This guide explains how to execute PPPwn using a hacked JIO Fiber Router. It lev
 Follow the instructions in the [JFC-Group/JF-Customisation](https://github.com/JFC-Group/JF-Customisation) repository to gain root access to your JIO Fiber Router.
 
 ### 2. Download and Prepare Files
-1. Download this repository as a ZIP file and extract it.
-2. Open `run.sh` and modify the variables `firmware`, `stage1`, and `stage2` based on your PS4 firmware version.
+1. Download `PPPWN-JIO-Router-main.tar` from release.
 
 ### 3. Transfer Files to USB
-1. Copy the `PPPWN-JIO-Router-main` folder to the root directory of your USB drive.
+1. Copy the `PPPWN-JIO-Router-main.tar` folder to the root directory of your USB drive.
 
 ### 4. Connect PS4 to Router
 1. Plug the USB drive into the router.
@@ -48,16 +47,39 @@ Follow the instructions in the [JFC-Group/JF-Customisation](https://github.com/J
 ### 6. Execute Commands via Telnet
 Run the following commands in the telnet session, replacing `<usblable>` with the name of your USB drive:
 ```bash
-cp -r /mnt/vfs/admin/<usblable>/PPPWN-JIO-Router-main /home
-cd /home/PPPWN-JIO-Router-main
-sed -e "s/\r//g" run.sh > temp.sh
-cp temp.sh run.sh
-rm temp.sh
-chmod +x ./run.sh
-./run.sh
+cp /mnt/vfs/admin/<usblable>/PPPWN-JIO-Router-main.tar /home
+cd /home
+tar -xzvf PPPWN-JIO-Router-main.tar
+cd /PPPWN-JIO-Router-main
+chmod +x setup.sh && ./setup.sh
 ```
 
-### 7. Auto-Run Script on Boot
+### 7. Setup
+1. Set interface to eth3.1.
+2. Set firmware based on your ps4 fw(900 or 1100).
+
+### 8. WPS button setup
+1. Open `wpsSessionUpdate.lua` file using the following command
+    ```bash
+    cd /pfrm2.0/bin
+    vi wpsSessionUpdate.lua
+    ```
+    find for the following lines
+    ```lua
+    os.execute("/bin/touch /tmp/wpsON")
+    os.execute("/bin/ledctl1 ALL off;/bin/ledctl1 GREEN slowBlink")
+    ```
+    and replace it with
+    ```lua
+    if (util.fileExists("/tmp/pppwn.lock")) then
+        os.execute("pkill -f run.sh")
+        os.execute("rm /tmp/pppwn.lock")
+    else
+        os.execute("/home/run.sh &")
+    end
+    ```
+
+### 9. Auto-Run Script on Boot (Optional)
 To make the script run automatically during router boot-up:
 1. Open the `rcS` file:
     ```bash
