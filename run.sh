@@ -1,11 +1,12 @@
 #!/bin/bash
+
+# Create a lock file
+/bin/touch /tmp/pppwn.lock
+
 cd /home/PPPWN-JIO-Router-main
 
 # Source the configuration file
 source ./config.conf
-
-# Create a lock file
-touch /tmp/pppwn.lock
 
 echo "PPPWN - Designed for JIO Fiber Routers"
 

@@ -12,11 +12,11 @@ DEFAULT_EXTENSION=".bin"
 echo "PPPWN Setup Script"
 
 # Prompt user for interface with a default value
-read -p "Enter interface (default: eth3.1): " interface
+read -p "Enter interface (options: eth0.1, eth1.1, eth2.1, eth3.1; default: eth3.1): " interface
 interface=${interface:-eth3.1}
 
 # Prompt user for firmware version with a default value
-read -p "Enter firmware version (default: 1100): " firmware
+read -p "Enter firmware version (Options: 900, 1000, 1001, 1100; default: 1100): " firmware
 firmware=${firmware:-1100}
 
 # Construct the paths for stage1 and stage2 based on the firmware version
