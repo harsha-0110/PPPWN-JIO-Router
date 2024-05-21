@@ -75,7 +75,7 @@ chmod +x setup.sh && ./setup.sh
         os.execute("pkill -f run.sh")
         os.execute("rm /tmp/pppwn.lock")
     else
-        os.execute("/home/run.sh &")
+        os.execute("/home/PPPWN-JIO-Router-main/run.sh &")
     end
     ```
 
