@@ -72,7 +72,7 @@ chmod +x setup.sh && ./setup.sh
     and replace it with
     ```lua
     if (util.fileExists("/tmp/pppwn.lock")) then
-        os.execute("pkill -f run.sh")
+        os.execute("pkill -f pppwn")
         os.execute("rm /tmp/pppwn.lock")
     else
         os.execute("/home/PPPWN-JIO-Router-main/run.sh &")
