@@ -94,6 +94,11 @@ To make the script run automatically during router boot-up:
 ## Tutorial 
 [<img src="https://i.ytimg.com/vi/50wWXpNX-s0/maxresdefault.jpg" width="100%">](https://www.youtube.com/watch?v=50wWXpNX-s0) 
 
+## Changelog
+- Changing installation folder from `/home` to `/flash` as `/flash` is still writable in latest firmware in Jio Router.
+- Added support to set timeout
+- Optimized the code
+
 ## Features
 - Supports PS4 Firmware 9.00, 10.00, 10.01 & 11.00
 - Stage 2 payload is GoldHen Loader by [Sistro](https://github.com/SiSTR0)
