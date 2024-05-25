@@ -1,23 +1,45 @@
 #!/bin/bash
 
-# Create a lock file
-/bin/touch /tmp/pppwn.lock
+set -e
 
-cd /home/PPPWN-JIO-Router-main
+# Create a lock file and ensure it is removed on exit
+lockfile=/tmp/pppwn.lock
+touch "$lockfile"
 
-# Source the configuration file
-source ./config.conf
+# Clean up function
+cleanup() {
+    if [ -f "$lockfile" ]; then
+        rm -f "$lockfile"
+    fi
+    [ -n "$led_blink_pid" ] && kill "$led_blink_pid" 2>/dev/null || true
+    ledctl1 ALL off
+    ledctl1 BLUE on
+}
+
+# Trap to ensure cleanup function is called on script exit or interruption
+trap cleanup EXIT SIGTERM SIGINT
+
+# Change to the working directory or exit with an error message
+cd /flash/PPPWN-JIO-Router-main || { echo "Failed to change directory to /flash/PPPWN-JIO-Router-main"; exit 1; }
+
+# Source the configuration file if it exists
+config_file=./config.conf
+if [ ! -f "$config_file" ]; then
+    echo "Configuration file not found!" >&2
+    exit 1
+fi
+source "$config_file"
 
 echo "PPPWN - Designed for JIO Fiber Routers"
 
-# Determine the architecture and set the appropriate pppwn executable
-arch=$(uname -m)
-if [ "$arch" = "armv7l" ]; then
-    pppwn_executable="./pppwn-armv7l"
-elif [ "$arch" = "mips" ]; then
-    pppwn_executable="./pppwn-mipsel"
-else
-    echo "Unsupported architecture: $arch"
+# Verify the presence of required commands
+if ! command -v ledctl1 &>/dev/null; then
+    echo "ledctl1 command not found!" >&2
+    exit 1
+fi
+
+if [ ! -x "$pppwn_executable" ]; then
+    echo "PPPWN executable not found or not executable for architecture $(uname -m)!" >&2
     exit 1
 fi
 
@@ -30,28 +52,12 @@ keep_led_blue_fast_blink() {
     done
 }
 
-# Trap to ensure LED is turned off when the script exits or is interrupted
-cleanup() {
-    rm /tmp/pppwn.lock
-    kill $led_blink_pid 2>/dev/null
-    ledctl1 ALL off
-    ledctl1 BLUE on
-}
-
-# Execute the cleanup function when the script exits or is interrupted
-trap cleanup EXIT SIGTERM SIGINT
-
 # Start the LED blinking in the background
 keep_led_blue_fast_blink &
 led_blink_pid=$!
 
-# Execute the pppwn command and store its PID
-$pppwn_executable --interface $interface --fw $firmware --stage1 $stage1 --stage2 $stage2 --auto-retry &
-pppwn_pid=$!
+# Execute the pppwn command
+"$pppwn_executable" --interface "$interface" --fw "$firmware" --stage1 "$stage1" --stage2 "$stage2" --timeout "$timeout" --auto-retry
 
 # Wait for the pppwn executable to finish
-wait $pppwn_pid
-
-# Stop the LED blinking loop (cleanup function will handle this)
-cleanup
-trap - EXIT SIGTERM SIGINT
+wait "$pppwn_pid"

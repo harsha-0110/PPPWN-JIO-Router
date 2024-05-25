@@ -47,8 +47,8 @@ Follow the instructions in the [JFC-Group/JF-Customisation](https://github.com/J
 ### 6. Execute Commands via Telnet
 Run the following commands in the telnet session, replacing `<usblable>` with the name of your USB drive:
 ```bash
-cp /mnt/vfs/admin/<usblable>/PPPWN-JIO-Router-main.tar.gz /home
-cd /home
+cp /mnt/vfs/admin/<usblable>/PPPWN-JIO-Router-main.tar.gz /flash
+cd /flash
 tar -xzvf PPPWN-JIO-Router-main.tar.gz
 cd PPPWN-JIO-Router-main
 chmod +x setup.sh && ./setup.sh
@@ -75,7 +75,7 @@ chmod +x setup.sh && ./setup.sh
         os.execute("pkill -f pppwn")
         os.execute("rm /tmp/pppwn.lock")
     else
-        os.execute("/home/PPPWN-JIO-Router-main/run.sh &")
+        os.execute("/flash/PPPWN-JIO-Router-main/run.sh &")
     end
     ```
 
@@ -88,7 +88,7 @@ To make the script run automatically during router boot-up:
     ```
 2. Append the following lines to the end of the file:
     ```bash
-    cd /home/PPPWN-JIO-Router-main
+    cd /flash/PPPWN-JIO-Router-main
     ./run.sh
     ```
 ## Tutorial 
