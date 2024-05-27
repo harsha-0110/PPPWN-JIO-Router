@@ -32,12 +32,6 @@ source "$config_file"
 
 echo "PPPWN - Designed for JIO Fiber Routers"
 
-# Verify the presence of required commands
-if ! command -v ledctl1 &>/dev/null; then
-    echo "ledctl1 command not found!" >&2
-    exit 1
-fi
-
 if [ ! -x "$pppwn_executable" ]; then
     echo "PPPWN executable not found or not executable for architecture $(uname -m)!" >&2
     exit 1

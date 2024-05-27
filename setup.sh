@@ -12,26 +12,12 @@ EXTENSION=".bin"
 
 echo "PPPWN Setup Script"
 
-# Function to validate user input
-validate_input() {
-    local input="$1"
-    local options="$2"
-    if [[ ! " ${options[*]} " =~ " $input " ]]; then
-        echo "Invalid input: $input. Valid options are: ${options[*]}" >&2
-        exit 1
-    fi
-}
-
-# Options for firmware version
-firmware_options=("900" "1000" "1001" "1100")
-
 # Prompt user for interface without validation and default
 read -p "Enter interface: " interface
 
 # Prompt user for firmware version with a default value
-read -p "Enter firmware version (options: ${firmware_options[*]}; default: 1100): " firmware
+read -p "Enter firmware version (options: 900, 1000, 1001, 1100; default: 1100): " firmware
 firmware=${firmware:-1100}
-validate_input "$firmware" "${firmware_options[*]}"
 
 # Prompt user for timeout with a default value
 read -p "Enter timeout (default: 5 seconds): " timeout
@@ -46,7 +32,7 @@ case $(uname -m) in
     armv7l)
         pppwn_executable="./pppwn-armv7l"
         ;;
-    mips)
+    mips | mipsel)
         pppwn_executable="./pppwn-mipsel"
         ;;
     *)
