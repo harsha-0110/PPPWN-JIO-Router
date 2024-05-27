@@ -20,7 +20,7 @@ cleanup() {
 trap cleanup EXIT SIGTERM SIGINT
 
 # Change to the working directory or exit with an error message
-cd /flash/PPPWN-JIO-Router-main || { echo "Failed to change directory to /flash/PPPWN-JIO-Router-main"; exit 1; }
+cd /home/PPPWN-JIO-Router-main || { echo "Failed to change directory to /home/PPPWN-JIO-Router-main"; exit 1; }
 
 # Source the configuration file if it exists
 config_file=./config.conf
