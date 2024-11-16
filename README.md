@@ -56,7 +56,7 @@ chmod +x setup.sh && ./setup.sh
 
 ### 7. Setup
 1. Set interface to eth3.1.
-2. Set firmware based on your ps4 fw(900, 1000, 1001, 1100).
+2. Set firmware based on your ps4 fw(900, 960, 1000, 1001, 1050, 1070, 1071, 1100).
 
 ### 8. WPS button setup
 1. Open `wpsSessionUpdate.lua` file using the following command
@@ -95,7 +95,7 @@ To make the script run automatically during router boot-up:
 [<img src="https://i.ytimg.com/vi/50wWXpNX-s0/maxresdefault.jpg" width="100%">](https://www.youtube.com/watch?v=50wWXpNX-s0) 
 
 ## Features
-- Supports PS4 Firmware 9.00, 10.00, 10.01 & 11.00
+- Supports PS4 Firmware 9.00, 9.60, 10.00, 10.01, 10.50, 10.70, 10.71 & 11.00
 - Stage 2 payload is GoldHen Loader by [Sistro](https://github.com/SiSTR0)
 - Auto detection of router architecture
 - LED indication: Blinking blue during exploit execution; solid blue after successful execution.
