@@ -1,4 +1,4 @@
-# PPPWN-JIO-Router for PS4 fw 9.00, 10.00, 10.01 & 11.00
+# PPPWN-JIO-Router for PS4
 
 This guide explains how to execute PPPwn using a hacked JIO Fiber Router. It leverages [PPPwn_cpp](https://github.com/xfangfang/PPPwn_cpp), created by xfangfang.
 
