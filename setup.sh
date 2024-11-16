@@ -16,7 +16,7 @@ echo "PPPWN Setup Script"
 read -p "Enter interface: " interface
 
 # Prompt user for firmware version with a default value
-read -p "Enter firmware version (options: 900, 1000, 1001, 1100; default: 1100): " firmware
+read -p "Enter firmware version (options: 900, 960, 1000, 1001, 1050, 1070, 1071 and 1100; default: 1100): " firmware
 firmware=${firmware:-1100}
 
 # Prompt user for timeout with a default value
